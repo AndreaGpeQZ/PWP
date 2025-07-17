@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de ToDos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+  <h1 class="mb-4">Lista de Pendientes</h1>
+
+  <a class="btn btn-primary mb-3" href="{% url 'todo_create' %}">Crear nuevo ToDo</a>
+
+  <h3>Ver diferentes filtros:</h3>
+  <div class="mb-4">
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/todos-ids/">IDs (todos)</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/todos-ids-titles/">IDs y Titles (todos)</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/no-resueltos-ids-titles/">IDs y Titles NO resueltos</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/resueltos-ids-titles/">IDs y Titles RESUELTOS</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/todos-ids-userid/">IDs y userID (todos)</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/resueltos-ids-userid/">IDs y userID RESUELTOS</a>
+    <a class="btn btn-outline-secondary mb-1" href="/pendientes/no-resueltos-ids-userid/">IDs y userID NO resueltos</a>
+  </div>
+
+  <h3 class="mt-4">Todos los registros:</h3>
+  <ul class="list-group">
+    {% for todo in todos %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+        <span>
+          <a class="btn btn-sm btn-warning" href="{% url 'todo_update' todo.pk %}">Editar</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'todo_delete' todo.pk %}">Eliminar</a>
+        </span>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay pendientes.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

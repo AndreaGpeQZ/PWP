@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detalle ToDo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+  <h1 class="mb-4">Detalle del Pendiente</h1>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> {{ todo.id }}</li>
+    <li class="list-group-item"><strong>Title:</strong> {{ todo.title }}</li>
+    <li class="list-group-item"><strong>UserID:</strong> {{ todo.userID }}</li>
+    <li class="list-group-item"><strong>Resolved:</strong> {{ todo.resolved }}</li>
+  </ul>
+  <a class="btn btn-secondary mt-3" href="{% url 'todo_list' %}">Volver</a>
+</body>
+</html>
